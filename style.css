@@ -1,0 +1,16 @@
+.div-block {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    margin: 6px;
+}
+
+#container {
+    background-color: darkgrey;
+    display: flex;
+    flex-flow: row wrap;
+    /* flex: 1 0 6.25%; */
+    /*  max content width 6.25% maybe something along this line */
+    /* max-width: 352px;
+    max-height: 352px; /* easy but wrong */ 
+}
