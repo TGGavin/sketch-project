@@ -6,8 +6,8 @@ body {
     width: 50px;
     height: 50px;
     background-color: black;
-    margin: 6px;;
     flex: 0 0 1;
+    flex-basis: calc(100% / 16);
 }
 
 #container {
@@ -17,6 +17,6 @@ body {
     flex-wrap: wrap;
     flex: 0 0 1;
     /*  max content width 6.25% maybe something along this line */
-    max-width: 992px;
-    max-height: 992px; /* easy but wrong. I CAN FIND NO OTHER WAY WTF!!! */ 
+    /* max-width: 992px; */
+    /* max-height: 992px; easy but wrong. I CAN FIND NO OTHER WAY WTF!!!  */
 }
