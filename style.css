@@ -1,6 +1,9 @@
 body {
     background-color: darkgrey;
 }
+.target {
+    background-color: red;
+}
 .div-block {
     display: flex;
     width: 50px;
@@ -9,14 +12,14 @@ body {
     flex: 0 0 1;
     flex-basis: calc(100% / 16);
 }
-
+/* Must make div-block evenly sized within container */
 #container {
     background-color: darkgrey;
     justify-self: center;
     display: flex;
     flex-wrap: wrap;
     flex: 0 0 1;
-    /*  max content width 6.25% maybe something along this line */
-    /* max-width: 992px; */
-    /* max-height: 992px; easy but wrong. I CAN FIND NO OTHER WAY WTF!!!  */
+     max-width: 992px;
+     max-height: 992px; 
+     /*easy but wrong. I CAN FIND NO OTHER WAY WTF!!!  */
 }
