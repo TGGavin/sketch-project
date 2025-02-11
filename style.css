@@ -1,25 +1,40 @@
-body {
-    background-color: darkgrey;
-}
-.target {
-    background-color: red;
-}
-.div-block {
-    display: flex;
-    width: 50px;
-    height: 50px;
-    background-color: black;
-    flex: 0 0 1;
-    flex-basis: calc(100% / 16);
-}
-/* Must make div-block evenly sized within container */
-#container {
-    background-color: darkgrey;
+/* Just going to reset it. and individually go through each css property.
+also change contain from id to class maybe */
+/* make it so every 16 paintable-divs it wraps? */
+/* Now to correctly size divs and make shrink and grow properly */
+/* #eas-container {
+
+} */
+
+#eas-content {
     justify-self: center;
+    max-height: 960px;
+    max-width: 960px;
     display: flex;
-    flex-wrap: wrap;
-    flex: 0 0 1;
-     max-width: 992px;
-     max-height: 992px; 
-     /*easy but wrong. I CAN FIND NO OTHER WAY WTF!!!  */
+    flex-flow: row wrap;
+    border: 10px;
+    border-color: black;
+}
+
+.rgb-square {
+box-sizing: border-box;
+width: 10px;
+height: 10px;
+border: solid .5px;
+border-color: black;
+}
+
+#btn-prompter {
+    display: flex;
+    width: 250px;
+    height: 50px;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+    border-radius: 8px;
+}
+
+#btn-prompter:hover {
+    background-color: grey;
 }
