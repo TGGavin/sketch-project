@@ -1,28 +1,24 @@
     // "eas" means "etch-a-sketch"
     // "gSI" = gridSizeInput
 
-    // function etchASketch() {
-
     const gridContent = document.querySelector("#eas-content")
-    const gSizeNum = document.querySelector("#g-input-num") 
     const gSizeRange = document.querySelector("#g-input-range")
-    let gsnVal = gSizeNum.value
-    let gsrVal = gSizeRange.value
+    let visGridVal = document.querySelector(".show-grid-val")
     gSizeRange.addEventListener("input", (e) => {
-        gSizeNum.value = e.target.value
         gridSize = e.target.value
+        visGridVal.textContent = gridSize
+        rgbDivList.forEach((e) => {
+            e.remove()
+        })
+        dynamoGrid(gridSize)
     })
 
-    gSizeNum.addEventListener("input",(e) => {
-        gSizeRange.value = e.target.vale
-        gridSize = e.target.value
-    })
+    let gridSize = gSizeRange.value
 
+        function dynamoGrid(size) {
+        squareSize = 880 / size
+        totalSquares = size * size
 
-
-    let gridSize = gSizeNum.value
-    let squareSize = 880 / gridSize
-    let totalSquares = gridSize * gridSize
         
     for (let i = 0; i < totalSquares; i++) {
         const rgbDiv = document.createElement("div")
@@ -32,9 +28,11 @@
         rgbDiv.classList.add("rgb-square")
         gridContent.appendChild(rgbDiv)
     }
-    const rgbSquareNL = document.querySelectorAll(".rgb-square")
-
-
+    rgbDivList = document.querySelectorAll(".rgb-square")
+    
+    }
+   let rgbDivList
+   
     // to do: change this function from mouseover to some sort of hold click
     // make it so event handler is on rgbDiv not grid content
     gridContent.addEventListener("mouseover", (e) => {
@@ -52,24 +50,18 @@
     const resetBtn = document.querySelector(".g-reset")
 
         resetBtn.addEventListener("click", () => {
-             rgbSquareNL.forEach((e) => {
+             rgbDivList.forEach((e) => {
                 e.setAttribute("style", "background-color: white;")
              })
         })
 
         function delGrid() {
-            rgbSquareNL.forEach((e) => {
+            rgbDivList.forEach((e) => {
                 e.remove()
             })
         }
-    // }
     
-    // etchASketch()
-
-            // function updateGridVal(e) {
-        //     gridSize = e.target.value
-        // }
-
+        dynamoGrid(16)
     //  TO DO: Make hold click custom event. Put hold click event handler for grid of rgb squares.
     //  Make reset button work. DONE!
     //  Make getRandomColor function
