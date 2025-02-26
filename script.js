@@ -54,12 +54,6 @@
                 e.setAttribute("style", "background-color: white;")
              })
         })
-
-        function delGrid() {
-            rgbDivList.forEach((e) => {
-                e.remove()
-            })
-        }
     
         dynamoGrid(16)
     //  TO DO: Make hold click custom event. Put hold click event handler for grid of rgb squares.
