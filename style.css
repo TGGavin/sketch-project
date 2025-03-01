@@ -1,12 +1,8 @@
-/* also change contain from id to class maybe */
-/* IDEA make it so all css properties are changed within js and change 
-property values to the corresponding needs. example: change :nth-child(16n + 1) 
-js loop conditional i < 257 to (21n + 1) and i < 442 */
+/* Set custom properties within :root for global use */
 
-
-/* remove as much css as possible and make put everythig in relation to the grid in
-js and connect to a slider */
-
+:root {
+  --rgb-square-size: 55px;
+}
 #eas-content {
     display: flex;
     flex-basis: fit-content;
@@ -16,12 +12,12 @@ js and connect to a slider */
   }
   .rgb-square {
     background-color: white;
-    width: 55px;
-    height: 55px;
+    width: var(--rgb-square-size);
+    height: var(--rgb-square-size);
   }
 
     .btn-tray {
-        display: flex;
+      display: flex;
     }
 
 .g-reset {
@@ -32,10 +28,10 @@ js and connect to a slider */
     justify-content: center;
     align-items: center;
     margin: 16px;
-    border-radius: 33%;
+    border-radius: 100%;
     margin: 8px;
 }
 
 .g-reset:hover {
-    background-color: grey;
+  background-color: grey;
 }

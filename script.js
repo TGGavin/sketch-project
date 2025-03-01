@@ -1,38 +1,44 @@
     // "eas" means "etch-a-sketch"
     // "gSI" = gridSizeInput
+    // I can't quite put my finger on what to do, in order to, fix the stupid.
 
+    const root = document.querySelector(":root")
     const gridContent = document.querySelector("#eas-content")
     const gSizeRange = document.querySelector("#g-input-range")
-    let visGridVal = document.querySelector(".show-grid-val")
+    let gridSizeP = document.querySelector(".show-grid-val") 
+
+    // let rootStyles = getComputedStyle(root)
+    // let rgbSS = rootStyles.getPropertyValue("--rgb-square-size")
+
+    //let rgbSq
+
     gSizeRange.addEventListener("input", (e) => {
-        gridSize = e.target.value
-        visGridVal.textContent = gridSize
+        let gridSize = e.target.value
+        gridSizeP.textContent = gridSize
         rgbDivList.forEach((e) => {
             e.remove()
         })
         dynamoGrid(gridSize)
     })
 
-    let gridSize = gSizeRange.value
-
         function dynamoGrid(size) {
-        squareSize = 880 / size
-        totalSquares = size * size
+            squareSize = 880 / size
+            totalSquares = size * size
+        for (let i = 0; i < totalSquares; i++) {
+            const createRgbDiv = document.createElement("div")
+            // rgbDiv.style.width = squareSize
+            // rgbDiv.style.height = squareSize
+            //Must do the stuff above after every square has rendered and then attach it everysingle one via forEach
+            createRgbDiv.classList.add("rgb-square")
+            gridContent.appendChild(createRgbDiv)
+        }
+        rgbDivList = document.querySelectorAll(".rgb-square") // Here to update nodeList length
 
-        
-    for (let i = 0; i < totalSquares; i++) {
-        const rgbDiv = document.createElement("div")
-        // rgbDiv.style.width = squareSize
-        // rgbDiv.style.height = SquareSize
-        //Must do the stuff above after every square has rendered and then attach it everysingle one via forEach
-        rgbDiv.classList.add("rgb-square")
-        gridContent.appendChild(rgbDiv)
+        let pxSquareSize = `${squareSize}px`
+        root.style.setProperty("--rgb-square-size", pxSquareSize)
     }
-    rgbDivList = document.querySelectorAll(".rgb-square")
-    
-    }
-   let rgbDivList
-   
+    let rgbDivList
+    let squareSize
     // to do: change this function from mouseover to some sort of hold click
     // make it so event handler is on rgbDiv not grid content
     gridContent.addEventListener("mouseover", (e) => {
@@ -43,7 +49,7 @@
             // let newOpacity = currentOpacity + 0.1
             // target.style.opacity = newOpacity
         } else {
-            console.log(`${target.id} Is not intented to changed`)
+            console.log(`${target.id} Is not intented to change`)
         }
     })
 
@@ -54,8 +60,11 @@
                 e.setAttribute("style", "background-color: white;")
              })
         })
-    
         dynamoGrid(16)
+
+        const tes = document.querySelector(".test")
+        let t = "red"
+        tes.style.setProperty("color", t)
     //  TO DO: Make hold click custom event. Put hold click event handler for grid of rgb squares.
     //  Make reset button work. DONE!
     //  Make getRandomColor function
