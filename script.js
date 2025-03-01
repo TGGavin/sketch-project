@@ -2,6 +2,13 @@
     // "gSI" = gridSizeInput
     // I can't quite put my finger on what to do, in order to, fix the stupid.
 
+    //  TO DO: Make hold click custom event. Put hold click event handler for grid of rgb squares.
+    //  Make getRandomColor function
+    //  Make Opacity increase 10% every pass
+    //  DONE! Make reset button work. 
+    //  DONE! Make Grid size changeable via input/prompt. 
+    //  DONE! THE BIG CAJUNA: Make it so the values change dynamically when changing grid size. 
+
     const root = document.querySelector(":root")
     const gridContent = document.querySelector("#eas-content")
     const gSizeRange = document.querySelector("#g-input-range")
@@ -9,8 +16,6 @@
 
     // let rootStyles = getComputedStyle(root)
     // let rgbSS = rootStyles.getPropertyValue("--rgb-square-size")
-
-    //let rgbSq
 
     gSizeRange.addEventListener("input", (e) => {
         let gridSize = e.target.value
@@ -26,9 +31,6 @@
             totalSquares = size * size
         for (let i = 0; i < totalSquares; i++) {
             const createRgbDiv = document.createElement("div")
-            // rgbDiv.style.width = squareSize
-            // rgbDiv.style.height = squareSize
-            //Must do the stuff above after every square has rendered and then attach it everysingle one via forEach
             createRgbDiv.classList.add("rgb-square")
             gridContent.appendChild(createRgbDiv)
         }
@@ -61,14 +63,4 @@
              })
         })
         dynamoGrid(16)
-
-        const tes = document.querySelector(".test")
-        let t = "red"
-        tes.style.setProperty("color", t)
-    //  TO DO: Make hold click custom event. Put hold click event handler for grid of rgb squares.
-    //  Make reset button work. DONE!
-    //  Make getRandomColor function
-    //  Make Opacity increase 10% every pass
-    //  Move all rgb square, related styles into js
-    //  Make Grid size changeable via input/prompt
-    //  THE BIG CAJUNA: Make it so the values change dynamically when changing grid size
+        
