@@ -14,20 +14,12 @@
     const gSizeRange = document.querySelector("#g-input-range")
     let gridSizeP = document.querySelector(".show-grid-val") 
 
-    // let rootStyles = getComputedStyle(root)
-    // let rgbSS = rootStyles.getPropertyValue("--rgb-square-size")
-
-    gSizeRange.addEventListener("input", (e) => {
-        let gridSize = e.target.value
-        gridSizeP.textContent = gridSize
-        rgbDivList.forEach((e) => {
-            e.remove()
-        })
-        dynamoGrid(gridSize)
-    })
+    let gridContentStyles = getComputedStyle(gridContent)
+    let gcMaxWidthVal = gridContentStyles.getPropertyValue("max-width")
+    let gcParsedWidth = parseInt(gcMaxWidthVal, 10)
 
         function dynamoGrid(size) {
-            squareSize = 880 / size
+            squareSize = gcParsedWidth / size
             totalSquares = size * size
         for (let i = 0; i < totalSquares; i++) {
             const createRgbDiv = document.createElement("div")
@@ -41,19 +33,7 @@
     }
     let rgbDivList
     let squareSize
-    // to do: change this function from mouseover to some sort of hold click
-    // make it so event handler is on rgbDiv not grid content
-    gridContent.addEventListener("mouseover", (e) => {
-        target = e.target
-        if (target.classList.contains("rgb-square")) {
-            target.setAttribute("style", "background-color: violet;")
-            // const currentOpacity = parseFloat(getComputedStyle(target).opacity);
-            // let newOpacity = currentOpacity + 0.1
-            // target.style.opacity = newOpacity
-        } else {
-            console.log(`${target.id} Is not intented to change`)
-        }
-    })
+ 
 
     const resetBtn = document.querySelector(".g-reset")
 
@@ -62,5 +42,45 @@
                 e.setAttribute("style", "background-color: white;")
              })
         })
+
+
+        gSizeRange.addEventListener("input", (e) => {
+            let gridSize = e.target.value
+            gridSizeP.textContent = gridSize
+            rgbDivList.forEach((e) => {
+                e.remove()
+            })
+            dynamoGrid(gridSize)
+        })
+
+        let isLeftMouseDown = false
+
+        gridContent.addEventListener("mousedown", (e) => {
+            if (e.button === 0) {
+                isLeftMouseDown = true
+            }
+        })
+
+        gridContent.addEventListener("mouseup", (e) => {
+            if (e.button === 0) {
+                isLeftMouseDown = false
+            }
+        })
+
+        gridContent.addEventListener("mousemove", (e) => {
+            if (isLeftMouseDown) {
+                changeRgbDiv(e)
+            }
+        })
+
+        function changeRgbDiv(e) {
+            target = e.target
+            if (target.classList.contains("rgb-square")) {
+                target.setAttribute("style", "background-color: violet;")
+            } else {
+                console.log(`${target.id} Is not intented to change`)
+            }
+        }
+
         dynamoGrid(16)
-        
+
