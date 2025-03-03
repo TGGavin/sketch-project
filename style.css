@@ -25,6 +25,8 @@
     .btn-tray {
       display: flex;
       align-items: center;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .range-container {
@@ -33,18 +35,24 @@
       height: 30px;
       justify-content: center;
     }
-.g-reset {
-    display: flex;
-    width: 66px;
-    height: 66px;
-    justify-self: center;
-    justify-content: center;
-    align-items: center;
-    margin: 16px;
-    border-radius: 100%;
-    margin: 8px;
+
+.btn-tray > button:hover {
+  background-color: grey;
 }
 
-.g-reset:hover {
-  background-color: grey;
+.color-input {
+  height: 50px;
+  width: 66px;
+}
+
+.btn-tray > button {
+  display: flex;
+  width: 66px;
+  height: 50px;
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+  border-radius: 10%;
+  margin: 8px;
 }
