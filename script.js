@@ -8,7 +8,8 @@
     //  DONE! Make reset button work. 
     //  DONE! Make Grid size changeable via input/prompt. 
     //  DONE! THE BIG CAJUNA: Make it so the values change dynamically when changing grid size. 
-
+    //  Make it so when changing size of grid it does not lag
+    
     const root = document.querySelector(":root")
     const gridContent = document.querySelector("#eas-content")
     const gSizeRange = document.querySelector("#g-input-range")
@@ -47,39 +48,51 @@
         gSizeRange.addEventListener("input", (e) => {
             let gridSize = e.target.value
             gridSizeP.textContent = gridSize
-            rgbDivList.forEach((e) => {
-                e.remove()
-            })
+            nodeListDel(rgbDivList)
             dynamoGrid(gridSize)
         })
+
+        function nodeListDel(nlToDelete) {
+            nlToDelete.forEach((e) => {
+                e.remove()
+            })
+        }
 
         let isLeftMouseDown = false
 
         gridContent.addEventListener("mousedown", (e) => {
+            e.preventDefault()
             if (e.button === 0) {
                 isLeftMouseDown = true
+                changeRgbDiv(e)
+                console.log("mousedown " + isLeftMouseDown)
             }
         })
 
-        gridContent.addEventListener("mouseup", (e) => {
+        document.addEventListener("mouseup", (e) => {
             if (e.button === 0) {
                 isLeftMouseDown = false
+                changeRgbDiv(e)
+                console.log("mouseup " + isLeftMouseDown)
             }
         })
 
-        gridContent.addEventListener("mousemove", (e) => {
+        document.addEventListener("mouseover", (e) => {
             if (isLeftMouseDown) {
+                console.log("mousemove " + isLeftMouseDown)
                 changeRgbDiv(e)
-            }
+         }
         })
 
         function changeRgbDiv(e) {
+            
             target = e.target
             if (target.classList.contains("rgb-square")) {
                 target.setAttribute("style", "background-color: violet;")
             } else {
                 console.log(`${target.id} Is not intented to change`)
             }
+        
         }
 
         dynamoGrid(16)
