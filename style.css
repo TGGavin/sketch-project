@@ -2,6 +2,12 @@
 
 :root {
   --rgb-square-size: 55px;
+  --rgb-square-bg-color: white;
+}
+
+#master-container {
+  display: flex;
+  justify-self: center;
 }
 #eas-content {
     display: flex;
@@ -18,8 +24,15 @@
 
     .btn-tray {
       display: flex;
+      align-items: center;
     }
 
+    .range-container {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      justify-content: center;
+    }
 .g-reset {
     display: flex;
     width: 66px;
