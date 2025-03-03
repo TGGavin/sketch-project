@@ -82,21 +82,49 @@
          }
         })
 
+        isRandomColorOn = false
+
+        const rngColorBtn = document.querySelector(".btn-rng-color")
+        rngColorBtn.addEventListener("click", (e) => {
+            isRandomColorOn = !isRandomColorOn
+            btnClicked(e, isRandomColorOn)
+        })
+
+        const rngIsOnP = document.querySelector(".rng-color-p")
+        
+        function btnClicked(e, boolean) {
+        //  had to enable !important on css psuedo state :hover property in order to change color after event fires
+            target = e.target
+            if (typeof boolean === "boolean") {
+                if (boolean) {
+                    target.setAttribute("style", "background-color: grey")
+                    rngIsOnP.textContent = "On!"
+                } else {
+                    target.setAttribute("style", "background-color: white")
+                    rngIsOnP.textContent = "Off!"
+                }
+                
+            }
+
+        }
+
+
+
+
         function getRandomColor() {
             
             let randoRed = Math.ceil(Math.random() * 255)
             let randoGreen = Math.ceil(Math.random() * 255)
             let randoBlue = Math.ceil(Math.random() * 255)            
 
-            return `rgb(${randoRed}, ${randoGreen}. ${randoBlue});`
+            return `rgb(${randoRed}, ${randoGreen}, ${randoBlue});`
         }
 
-        const rgbOutput = getRandomColor()
-
         function changeRgbDiv(e) {
+            const rgbOutput = getRandomColor()
             target = e.target
             if (target.classList.contains("rgb-square")) {
-                target.setAttribute("style", "background-color: violet;")
+                target.setAttribute("style", `background-color: ${rgbOutput}`)
             } else {
                 console.log(`${target.id} is the wrong element, and will not be colored`)
             }
