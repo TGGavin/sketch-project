@@ -5,12 +5,17 @@
   --rgb-square-bg-color: white;
 }
 
-#master-container {
+#master-container,
+#eas-content,
+.btn-tray,
+.range-container {
   display: flex;
+}
+
+#master-container {
   justify-self: center;
 }
 #eas-content {
-    display: flex;
     flex-basis: fit-content;
     flex-wrap: wrap;
     max-width: 880px;
@@ -23,21 +28,20 @@
   }
 
     .btn-tray {
-      display: flex;
       align-items: center;
       flex-direction: column;
       justify-content: center;
     }
 
     .range-container {
-      display: flex;
       align-items: center;
       height: 30px;
       justify-content: center;
     }
 
-.btn-tray > button:hover {
-  background-color: grey;
+.btn-tray > button:hover,
+.rng-container > button:hover {
+  background-color: grey !important;
 }
 
 .color-input {
@@ -45,6 +49,7 @@
   width: 66px;
 }
 
+.rng-container > button,
 .btn-tray > button {
   display: flex;
   width: 66px;
@@ -55,4 +60,9 @@
   margin: 16px;
   border-radius: 10%;
   margin: 8px;
+}
+
+.rng-color-p {
+  justify-self: center;
+  margin: 0px 0px 8px 0px;
 }
