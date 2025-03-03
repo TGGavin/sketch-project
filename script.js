@@ -2,14 +2,15 @@
     // "gSI" = gridSizeInput
     // I can't quite put my finger on what to do, in order to, fix the stupid.
 
-    //  TO DO: Make hold click custom event. Put hold click event handler for grid of rgb squares.
+    //  TO DO: DONE! Make hold click custom event. Put hold click event handler for grid of rgb squares.
     //  Make getRandomColor function
     //  Make Opacity increase 10% every pass
     //  DONE! Make reset button work. 
     //  DONE! Make Grid size changeable via input/prompt. 
     //  DONE! THE BIG CAJUNA: Make it so the values change dynamically when changing grid size. 
     //  Make it so when changing size of grid it does not lag
-    
+    //  When done make sure to comment everything. but not too much
+
     const root = document.querySelector(":root")
     const gridContent = document.querySelector("#eas-content")
     const gSizeRange = document.querySelector("#g-input-range")
@@ -65,7 +66,6 @@
             if (e.button === 0) {
                 isLeftMouseDown = true
                 changeRgbDiv(e)
-                console.log("mousedown " + isLeftMouseDown)
             }
         })
 
@@ -73,24 +73,32 @@
             if (e.button === 0) {
                 isLeftMouseDown = false
                 changeRgbDiv(e)
-                console.log("mouseup " + isLeftMouseDown)
             }
         })
 
         document.addEventListener("mouseover", (e) => {
             if (isLeftMouseDown) {
-                console.log("mousemove " + isLeftMouseDown)
                 changeRgbDiv(e)
          }
         })
 
-        function changeRgbDiv(e) {
+        function getRandomColor() {
             
+            let randoRed = Math.ceil(Math.random() * 255)
+            let randoGreen = Math.ceil(Math.random() * 255)
+            let randoBlue = Math.ceil(Math.random() * 255)            
+
+            return `rgb(${randoRed}, ${randoGreen}. ${randoBlue});`
+        }
+
+        const rgbOutput = getRandomColor()
+
+        function changeRgbDiv(e) {
             target = e.target
             if (target.classList.contains("rgb-square")) {
                 target.setAttribute("style", "background-color: violet;")
             } else {
-                console.log(`${target.id} Is not intented to change`)
+                console.log(`${target.id} is the wrong element, and will not be colored`)
             }
         
         }
