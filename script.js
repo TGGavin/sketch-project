@@ -8,7 +8,7 @@
     //  DONE! Make reset button work. 
     //  DONE! Make Grid size changeable via input/prompt. 
     //  DONE! THE BIG CAJUNA: Make it so the values change dynamically when changing grid size. 
-    //  Make Opacity increase 10% every pass
+    //  DONE! Make Opacity increase 10% every pass
     //  Make border a gradient color, and maybe thicker
     //  Make it so when changing size of grid it does not lag
     //  When done make sure to comment everything. but not too much
@@ -125,9 +125,6 @@
             return `rgb(${randoRed}, ${randoGreen}, ${randoBlue})`
         }
 
-        // gridContent.addEventListener("mouseover", (e) => {
-        //     opacityIncrement(e)
-        // })
         function opacityIncrement(e) {
             target = e.target
             targetStyles = window.getComputedStyle(target)
