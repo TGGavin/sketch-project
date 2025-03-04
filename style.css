@@ -25,6 +25,7 @@
     background-color: white;
     width: var(--rgb-square-size);
     height: var(--rgb-square-size);
+    opacity: 0;
   }
 
     .btn-tray {

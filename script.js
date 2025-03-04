@@ -3,13 +3,16 @@
     // I can't quite put my finger on what to do, in order to, fix the stupid.
 
     //  TO DO: DONE! Make hold click custom event. Put hold click event handler for grid of rgb squares.
-    //  Make getRandomColor function
-    //  Make Opacity increase 10% every pass
+    //  DONE! Make getRandomColor function
+    //  DONE! Make user Chosen Color Function
     //  DONE! Make reset button work. 
     //  DONE! Make Grid size changeable via input/prompt. 
     //  DONE! THE BIG CAJUNA: Make it so the values change dynamically when changing grid size. 
+    //  Make Opacity increase 10% every pass
+    //  Make border a gradient color, and maybe thicker
     //  Make it so when changing size of grid it does not lag
     //  When done make sure to comment everything. but not too much
+    //  Make Eraser Button, and event handler
 
     const root = document.querySelector(":root")
     const gridContent = document.querySelector("#eas-content")
@@ -41,7 +44,7 @@
 
         resetBtn.addEventListener("click", () => {
              rgbDivList.forEach((e) => {
-                e.setAttribute("style", "background-color: white;")
+                e.setAttribute("style", "background-color: white; opacity: 0")
              })
         })
 
@@ -119,19 +122,31 @@
             let randoGreen = Math.ceil(Math.random() * 255)
             let randoBlue = Math.ceil(Math.random() * 255)            
 
-            return `rgb(${randoRed}, ${randoGreen}, ${randoBlue});`
+            return `rgb(${randoRed}, ${randoGreen}, ${randoBlue})`
+        }
+
+        // gridContent.addEventListener("mouseover", (e) => {
+        //     opacityIncrement(e)
+        // })
+        function opacityIncrement(e) {
+            target = e.target
+            targetStyles = window.getComputedStyle(target)
+            val = parseFloat(targetStyles["opacity"])
+            return val += 0.10
         }
 
         function changeRgbDiv(e, boolean) {
+            target = e.target
             const rngColor = getRandomColor()
             const userColor = getChosenColor()
-            target = e.target
+            const opac = opacityIncrement(e)
+            
             if (typeof boolean === "boolean") {
                 if (target.classList.contains("rgb-square")) {
                     if (boolean) {
-                        target.setAttribute("style", `background-color: ${rngColor}`)
+                        target.setAttribute("style", `background-color: ${rngColor}; opacity: ${opac};` )
                     }   else if (!boolean) {
-                        target.setAttribute("style", `background-color: ${userColor}`)
+                        target.setAttribute("style", `background-color: ${userColor}; opacity: ${opac};`)
                     }       
                 }   
             } else {
