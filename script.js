@@ -65,20 +65,20 @@
             e.preventDefault()
             if (e.button === 0) {
                 isLeftMouseDown = true
-                changeRgbDiv(e)
+                changeRgbDiv(e, isRandomColorOn)
             }
         })
 
         document.addEventListener("mouseup", (e) => {
             if (e.button === 0) {
                 isLeftMouseDown = false
-                changeRgbDiv(e)
+                changeRgbDiv(e, isRandomColorOn)
             }
         })
 
         document.addEventListener("mouseover", (e) => {
             if (isLeftMouseDown) {
-                changeRgbDiv(e)
+                changeRgbDiv(e, isRandomColorOn)
          }
         })
 
@@ -97,7 +97,7 @@
             target = e.target
             if (typeof boolean === "boolean") {
                 if (boolean) {
-                    target.setAttribute("style", "background-color: grey")
+                    target.setAttribute("style", "background-color: grey;")
                     rngIsOnP.textContent = "On!"
                 } else {
                     target.setAttribute("style", "background-color: white")
@@ -108,8 +108,10 @@
 
         }
 
-
-
+        const colorInput = document.querySelector(".color-input")
+        function getChosenColor() {
+            return colorInput.value
+        }
 
         function getRandomColor() {
             
@@ -120,16 +122,21 @@
             return `rgb(${randoRed}, ${randoGreen}, ${randoBlue});`
         }
 
-        function changeRgbDiv(e) {
-            const rgbOutput = getRandomColor()
+        function changeRgbDiv(e, boolean) {
+            const rngColor = getRandomColor()
+            const userColor = getChosenColor()
             target = e.target
-            if (target.classList.contains("rgb-square")) {
-                target.setAttribute("style", `background-color: ${rgbOutput}`)
+            if (typeof boolean === "boolean") {
+                if (target.classList.contains("rgb-square")) {
+                    if (boolean) {
+                        target.setAttribute("style", `background-color: ${rngColor}`)
+                    }   else if (!boolean) {
+                        target.setAttribute("style", `background-color: ${userColor}`)
+                    }       
+                }   
             } else {
-                console.log(`${target.id} is the wrong element, and will not be colored`)
+                console.log(`${boolean} is not a boolean value`)
             }
-        
-        }
-
+    }
         dynamoGrid(16)
 
